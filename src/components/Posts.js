@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import './Posts.css';
-import Post from './Post';
-import AddPost from './AddPost';
-import ProfileCard from './ProfileCard';
+import React, { Component } from "react";
+import classes from "./Posts.module.css";
+import Post from "./Post";
+import AddPost from "./AddPost";
+import ProfileCard from "./ProfileCard";
 
 const Posts = () => {
-    return (
-        <div className='posts'>
-            <ProfileCard/>
-            <AddPost/>
-            <Post/>
-            <Post/>
-            <Post/>
-        </div>
-    );
-}
+  return (
+    <div className={classes.posts}>
+      <ProfileCard />
+      <AddPost />
+      <Post />
+      <Post />
+      <Post />
+    </div>
+  );
+};
 
 export default Posts;

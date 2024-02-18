@@ -1,0 +1,33 @@
+.profileCard {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  color: #fff;
+  border: 1px solid #363738;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.img {
+  width: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  gap: 5px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.item {
+  font-size: 14px;
+}

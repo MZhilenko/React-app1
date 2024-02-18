@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import './Header.css';
+import React, { Component } from "react";
+import classes from "./Header.module.css";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className={classes.header}>
       <div className="container">
-        <div className='header__inner'>
-          <div className="logo">
-            <img src='logo.png' alt='logo'/>
+        <div className={classes.inner}>
+          <div className={classes.logo}>
+            <img src="./logo.png" alt="logo" />
           </div>
         </div>
       </div>
     </div>
-  ); 
-}
+  );
+};
 
-export default Header;     
+export default Header;

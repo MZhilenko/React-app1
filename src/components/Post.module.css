@@ -1,0 +1,42 @@
+.post {
+  width: 100%;
+  border-radius: 10px;
+  background: #363738;
+  padding: 20px;
+  color: #fff;
+}
+
+.profile {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.author {
+  color: #4099ff;
+  font-weight: 500;
+}
+
+.time {
+  color: #ffffffa8;
+  font-size: 11px;
+}
+
+.text {
+  margin-top: 10px;
+}
+
+.img {
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
