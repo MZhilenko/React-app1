@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import classes from "./Posts.module.css";
-import Post from "./Post";
-import AddPost from "./AddPost";
-import ProfileCard from "./ProfileCard";
+import Post from "../Post/Post";
+import AddPost from "../AddPost/AddPost";
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 const Posts = () => {
   return (
