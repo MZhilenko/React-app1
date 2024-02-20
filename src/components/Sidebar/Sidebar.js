@@ -1,20 +1,37 @@
 import React, { Component } from "react";
 import classes from "./Sidebar.module.css";
+import { NavLink } from "react-router-dom";
 
 console.log(classes);
 
 const Sidebar = () => {
   return (
     <div className={classes.sidebar}>
-      <div className={classes.nav}>
-        <a href="#s" className={`${classes.link} ${classes.active}`}>Feed</a>
-        <a className={classes.link} href="#s">Profile</a>
-        <a className={classes.link} href="#s">Messages</a>
-        <a className={classes.link} href="#s">News</a>
-        <a className={classes.link} href="#s">Music</a>
+      <nav className={classes.nav}>
+        <a href="#s" className={classes.link}>
+          Feed
+        </a>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `${classes.activeLink} ${classes.link}` : classes.link
+          }
+          to="/profile"
+        >
+          Profile
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `${classes.activeLink} ${classes.link}` : classes.link
+          }
+          to="/messages"
+        >
+          Messages
+        </NavLink>
+        <a className={classes.link}>News</a>
+        <a className={classes.link}>Music</a>
         <div className={classes.line}></div>
-        <a className={classes.link} href="#s">Settings</a>
-      </div>
+        <a className={classes.link}>Settings</a>
+      </nav>
     </div>
   );
 };

@@ -9,9 +9,9 @@ const Posts = () => {
     <div className={classes.posts}>
       <ProfileCard />
       <AddPost />
-      <Post />
-      <Post />
-      <Post />
+      <Post text="Lorem ipsum dolor sit amet"/>
+      <Post text="Lorem ipsum dolor sit amet consectetur adipiscing elit, sed"/>
+      <Post text="ullamcorper. Cras pulvinar mattis nunc sed blandit. Non quam lacus suspendisse faucibus interdum. Ornare arcu odio ut sem nulla. Accumsan tortor posuere ac ut consequat semper viverra nam libero. Ac tortor vitae purus"/>
     </div>
   );
 };

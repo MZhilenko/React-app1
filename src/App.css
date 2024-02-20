@@ -103,8 +103,13 @@ li {
 
 .page {
   width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: flex-start;
   gap: 20px;
   padding: 20px 0;
+}
+
+.app-content {
+  width: calc(100% - 320px);
 }
