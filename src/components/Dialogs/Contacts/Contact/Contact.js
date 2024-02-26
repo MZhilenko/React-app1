@@ -6,9 +6,9 @@ import { LoremIpsum, Avatar, fullname } from "react-lorem-ipsum";
 const Contact = (props) => {
   return (
     <NavLink to={`/messages/${props.id}`} className={classes.item}>
-      <Avatar className={classes.avatar} />
+      <img className={classes.avatar} src={props.avatar} alt="user" />
       <div className={classes.info}>
-        <div className={classes.name}>{fullname()}</div>
+        <div className={classes.name}>{props.name}</div>
         <div className={classes.lastMessage}>
           <LoremIpsum random={true} />
         </div>

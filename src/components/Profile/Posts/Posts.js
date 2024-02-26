@@ -4,14 +4,20 @@ import Post from "../Post/Post";
 import AddPost from "../AddPost/AddPost";
 import ProfileCard from "../ProfileCard/ProfileCard";
 
-const Posts = () => {
+const Posts = (props) => {
+  let postList = props.posts.map((post) => (
+    <Post
+      text={post.text}
+      img={post.img}
+      date={post.date}
+      likeCount={post.likeCount}
+    />
+  ));
   return (
     <div className={classes.posts}>
       <ProfileCard />
       <AddPost />
-      <Post text="Lorem ipsum dolor sit amet"/>
-      <Post text="Lorem ipsum dolor sit amet consectetur adipiscing elit, sed"/>
-      <Post text="ullamcorper. Cras pulvinar mattis nunc sed blandit. Non quam lacus suspendisse faucibus interdum. Ornare arcu odio ut sem nulla. Accumsan tortor posuere ac ut consequat semper viverra nam libero. Ac tortor vitae purus"/>
+      {postList}
     </div>
   );
 };

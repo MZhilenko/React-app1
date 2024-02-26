@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import classes from "./AddPost.module.css";
 
 const AddPost = () => {
+  let refTextArea = React.createRef();
+  let onAddPost = () => {
+    let text = refTextArea.current.value;
+    alert(text);
+  };
+
   return (
     <div className={classes.addPost}>
       <form>
-        <input
+        <textarea
           type="text"
+          ref={refTextArea}
           className={classes.input}
           placeholder="Enter your text"
-        />
-        <button className={classes.btn}>
+        ></textarea>
+        <button className={classes.btn} onClick={onAddPost}>
           <svg
             viewBox="0 0 24 24"
             fill="none"
