@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import classes from "./AddPost.module.css";
 
-const AddPost = () => {
+const AddPost = (props) => {
   let refTextArea = React.createRef();
   let onAddPost = () => {
     let text = refTextArea.current.value;
-    alert(text);
+    props.addPost(text);
   };
 
   return (

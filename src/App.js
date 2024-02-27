@@ -18,7 +18,12 @@ const App = (props) => {
               <Routes>
                 <Route
                   path="profile"
-                  element={<Posts posts={props.state.profilePage.posts} />}
+                  element={
+                    <Posts
+                      posts={props.state.profilePage.posts}
+                      addPost={props.addPost}
+                    />
+                  }
                 ></Route>
                 <Route
                   path="messages"
