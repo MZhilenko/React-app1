@@ -16,11 +16,7 @@ const Posts = (props) => {
   return (
     <div className={classes.posts}>
       <ProfileCard />
-      <AddPost
-        addPost={props.addPost}
-        newPostText={props.newPostText}
-        updateNewPostText={props.updateNewPostText}
-      />
+      <AddPost dispatch={props.dispatch} newPostText={props.newPostText} />
       {postList}
     </div>
   );

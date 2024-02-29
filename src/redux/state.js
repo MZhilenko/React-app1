@@ -99,30 +99,58 @@ let store = {
       ],
     },
   },
+  _callSubscriber() {
+    console.log("State changed");
+  },
   getState() {
     return this._state;
   },
-  _renderEntireTree() {
-    console.log("State changed");
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
-  addPost(postText) {
+  addPost() {
     let newPost = {
       id: this._state.profilePage.posts.length + 1,
       date: "27.02.2024",
       img: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
-      text: postText,
+      text: this._state.profilePage.newPostText,
       likeCount: 0,
     };
     this._state.profilePage.posts.push(newPost);
-    this._renderEntireTree(this._state);
+    this._callSubscriber(this._state);
   },
   updateNewPostText(newText) {
     this._state.profilePage.newPostText = newText;
-    this._renderEntireTree(this._state);
+    this._callSubscriber(this._state);
   },
-  subscribe(observer) {
-    this._renderEntireTree = observer;
+  dispatch(action) {
+    switch (action.type) {
+      case "ADD-POST":
+        let newPost = {
+          id: this._state.profilePage.posts.length + 1,
+          date: "27.02.2024",
+          img: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
+          text: this._state.profilePage.newPostText,
+          likeCount: 0,
+        };
+        this._state.profilePage.posts.push(newPost);
+        this._callSubscriber(this._state);
+        break;
+      case "UPDATE-NEW-POST-TEXT":
+        this._state.profilePage.newPostText = action.newText;
+        this._callSubscriber(this._state);
+        break;
+      default:
+        break;
+    }
   },
+};
+
+export const addPostActionCreator = () => {
+  return { type: "ADD-POST" };
+};
+export const updateNewPostTextActionCreator = (text) => {
+  return { type: "UPDATE-NEW-POST-TEXT", newText: text };
 };
 
 export default store;
