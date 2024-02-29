@@ -3,9 +3,17 @@ import classes from "./AddPost.module.css";
 
 const AddPost = (props) => {
   let refTextArea = React.createRef();
-  let onAddPost = () => {
+  let onAddPost = (e) => {
+    e.preventDefault();
     let text = refTextArea.current.value;
     props.addPost(text);
+    refTextArea.current.value = "";
+  };
+
+  let onPostChange = (e) => {
+    let text = e.target.value;
+    props.updateNewPostText(text);
+    console.log(props.newPostText);
   };
 
   return (
@@ -15,9 +23,11 @@ const AddPost = (props) => {
           type="text"
           ref={refTextArea}
           className={classes.input}
+          onChange={(e) => onPostChange(e)}
+          value={props.newPostText}
           placeholder="Enter your text"
-        ></textarea>
-        <button className={classes.btn} onClick={onAddPost}>
+        />
+        <button className={classes.btn} onClick={(e) => onAddPost(e)}>
           <svg
             viewBox="0 0 24 24"
             fill="none"

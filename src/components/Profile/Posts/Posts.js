@@ -16,7 +16,11 @@ const Posts = (props) => {
   return (
     <div className={classes.posts}>
       <ProfileCard />
-      <AddPost addPost={props.addPost} />
+      <AddPost
+        addPost={props.addPost}
+        newPostText={props.newPostText}
+        updateNewPostText={props.updateNewPostText}
+      />
       {postList}
     </div>
   );
