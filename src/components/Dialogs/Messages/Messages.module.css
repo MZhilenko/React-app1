@@ -1,5 +1,13 @@
-.list {
+.wrapper {
     width: calc(100% - 250px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.list {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;

@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+
 let store = {
   _state: {
     profilePage: {
@@ -27,6 +30,7 @@ let store = {
       ],
     },
     dialogsPage: {
+      newMessageText: "",
       dialogs: [
         {
           id: 1,
@@ -49,52 +53,23 @@ let store = {
       ],
       messages: [
         {
-          id: 1,
-          messages: [
-            {
-              who: "me",
-              text: "0 ullamco laboris nisi ut aliquip",
-            },
-
-            {
-              who: "me",
-              text: "0ncididunt , quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            },
-
-            {
-              who: "he",
-              text: "0ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitationenim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            },
-
-            {
-              who: "me",
-              text: "0ncididunt quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            },
-          ],
+          who: "me",
+          text: "0 ullamco laboris nisi ut aliquip",
         },
+
         {
-          id: 2,
-          messages: [
-            {
-              who: "me",
-              text: "1 ullamco laboris nisi ut aliquip",
-            },
+          who: "me",
+          text: "0ncididunt , quis nostrud exercitation ullamco laboris nisi ut aliquip",
+        },
 
-            {
-              who: "me",
-              text: "1ncididunt , quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            },
+        {
+          who: "he",
+          text: "0ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitationenim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
+        },
 
-            {
-              who: "he",
-              text: "1ncididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitationenim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            },
-
-            {
-              who: "he",
-              text: "1ncididunt quis nostrud exercitation ullamco laboris nisi ut aliquip",
-            },
-          ],
+        {
+          who: "me",
+          text: "0ncididunt quis nostrud exercitation ullamco laboris nisi ut aliquip",
         },
       ],
     },
@@ -108,49 +83,13 @@ let store = {
   subscribe(observer) {
     this._callSubscriber = observer;
   },
-  addPost() {
-    let newPost = {
-      id: this._state.profilePage.posts.length + 1,
-      date: "27.02.2024",
-      img: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
-      text: this._state.profilePage.newPostText,
-      likeCount: 0,
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._callSubscriber(this._state);
-  },
-  updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
+
   dispatch(action) {
-    switch (action.type) {
-      case "ADD-POST":
-        let newPost = {
-          id: this._state.profilePage.posts.length + 1,
-          date: "27.02.2024",
-          img: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
-          text: this._state.profilePage.newPostText,
-          likeCount: 0,
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._callSubscriber(this._state);
-        break;
-      case "UPDATE-NEW-POST-TEXT":
-        this._state.profilePage.newPostText = action.newText;
-        this._callSubscriber(this._state);
-        break;
-      default:
-        break;
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._callSubscriber(this._state);
   },
 };
-
-export const addPostActionCreator = () => ({ type: "ADD-POST" });
-export const updateNewPostTextActionCreator = (text) => ({
-  type: "UPDATE-NEW-POST-TEXT",
-  newText: text,
-});
 
 export default store;
 window.store = store;

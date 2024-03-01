@@ -1,5 +1,6 @@
 .dialogs {
     width: 100%;
+    height: calc(100vh - 120px);
     border-radius: 10px;
     background: #363738;
     padding: 10px;

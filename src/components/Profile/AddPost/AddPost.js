@@ -3,7 +3,7 @@ import classes from "./AddPost.module.css";
 import {
   addPostActionCreator,
   updateNewPostTextActionCreator,
-} from "../../../redux/state";
+} from "../../../redux/profileReducer";
 
 const AddPost = (props) => {
   let refTextArea = React.createRef();
@@ -17,7 +17,6 @@ const AddPost = (props) => {
   let onPostChange = (e) => {
     let newText = e.target.value;
     props.dispatch(updateNewPostTextActionCreator(newText));
-    console.log(props.newPostText);
   };
 
   return (

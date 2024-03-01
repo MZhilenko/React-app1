@@ -56,18 +56,14 @@ const dialogsArr = [
 ];
 
 const Dialogs = (props) => {
-  const listDialogs = dialogsArr.map((dialog) => (
-    <Messages key={dialog.id} arrMes={dialog.messages} />
-  ));
-
   return (
     <div className={classes.dialogs}>
       <Contacts dialogs={props.dialogs} />
-      <Routes>
-        <Route path="/messages/1" element={<Messages />} />
-        <Route path="/messages/2" element={<Messages />} />
-        <Route path="/messages/3" element={<Messages />} />
-      </Routes>
+      <Messages
+        messages={props.messages}
+        dispatch={props.dispatch}
+        newMessageText={props.newMessageText}
+      />
     </div>
   );
 };
