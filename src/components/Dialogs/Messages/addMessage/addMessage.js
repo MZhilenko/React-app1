@@ -1,20 +1,15 @@
 import React from "react";
 import classes from "./addMessage.module.css";
-import {
-  addMessageActionCreator,
-  updateNewMessageTextActionCreator,
-} from "../../../../redux/dialogsReducer";
+
 const AddMessage = (props) => {
   let refTextMessage = React.createRef();
   let onAddMessage = (e) => {
     e.preventDefault();
-    props.dispatch(addMessageActionCreator());
-    props.dispatch(updateNewMessageTextActionCreator(""));
+    props.addMessage();
   };
   let onChangeText = (e) => {
     let newText = e.target.value;
-    props.dispatch(updateNewMessageTextActionCreator(newText));
-    console.log(props.newMessageText);
+    props.changeText(newText);
   };
   return (
     <div className={classes.addMessage}>

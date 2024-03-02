@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./Messages.module.css";
 import Message from "./Message/Message";
-import AddMessage from "./addMessage/addMessage";
+import AddMessageContainer from "./addMessage/addMessageContainer";
 // import Contacts from "./Contacts/Contacts";
 
 const Messages = (props) => {
@@ -11,7 +11,7 @@ const Messages = (props) => {
   return (
     <div className={classes.wrapper}>
       <div className={classes.list}>{messagesList}</div>
-      <AddMessage
+      <AddMessageContainer
         dispatch={props.dispatch}
         newMessageText={props.newMessageText}
       />

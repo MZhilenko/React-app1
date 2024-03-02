@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import classes from "./AddPost.module.css";
-import {
-  addPostActionCreator,
-  updateNewPostTextActionCreator,
-} from "../../../redux/profileReducer";
 
 const AddPost = (props) => {
   let refTextArea = React.createRef();
   let onAddPost = (e) => {
     e.preventDefault();
-    props.dispatch(addPostActionCreator());
-    let text = "";
-    props.dispatch(updateNewPostTextActionCreator(text));
+    props.addPost();
   };
 
   let onPostChange = (e) => {
     let newText = e.target.value;
-    props.dispatch(updateNewPostTextActionCreator(newText));
+    props.postChange(newText);
   };
 
   return (
