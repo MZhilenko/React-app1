@@ -12,8 +12,8 @@ const Messages = (props) => {
     <div className={classes.wrapper}>
       <div className={classes.list}>{messagesList}</div>
       <AddMessageContainer
-        dispatch={props.dispatch}
-        newMessageText={props.newMessageText}
+      // dispatch={props.dispatch}
+      // newMessageText={props.newMessageText}
       />
     </div>
   );

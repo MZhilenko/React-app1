@@ -13,16 +13,7 @@ const Posts = (props) => {
       likeCount={post.likeCount}
     />
   ));
-  return (
-    <div className={classes.posts}>
-      <ProfileCard />
-      <AddPostContainer
-        dispatch={props.dispatch}
-        newPostText={props.newPostText}
-      />
-      {postList}
-    </div>
-  );
+  return <div className={classes.posts}>{postList}</div>;
 };
 
 export default Posts;

@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Posts from "./components/Profile/Posts/Posts";
 import Dialogs from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Profile from "./components/Profile/Profile";
 
 const App = (props) => {
   return (
@@ -19,10 +20,10 @@ const App = (props) => {
                 <Route
                   path="profile"
                   element={
-                    <Posts
-                      posts={props.state.profilePage.posts}
-                      dispatch={props.dispatch}
-                      newPostText={props.state.profilePage.newPostText}
+                    <Profile
+                    // posts={props.state.profilePage.posts}
+                    // dispatch={props.dispatch}
+                    // newPostText={props.state.profilePage.newPostText}
                     />
                   }
                 ></Route>
@@ -30,10 +31,10 @@ const App = (props) => {
                   path="messages"
                   element={
                     <Dialogs
-                      dialogs={props.state.dialogsPage.dialogs}
-                      dispatch={props.dispatch}
-                      messages={props.state.dialogsPage.messages}
-                      newMessageText={props.state.dialogsPage.newMessageText}
+                    // dialogs={props.state.dialogsPage.dialogs}
+                    // dispatch={props.dispatch}
+                    // messages={props.state.dialogsPage.messages}
+                    // newMessageText={props.state.dialogsPage.newMessageText}
                     />
                   }
                 />
