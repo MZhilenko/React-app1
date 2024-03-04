@@ -27,23 +27,28 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD-POST":
+    case "ADD-POST": {
+      let newState = { ...state };
+      newState.posts = [...state.posts];
       let newPost = {
-        id: state.posts.length + 1,
+        id: newState.posts.length + 1,
         date: "27.02.2024",
         img: "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg",
         text: state.newPostText,
         likeCount: 0,
       };
-      state.posts.push(newPost);
-      break;
-    case "UPDATE-NEW-POST-TEXT":
-      state.newPostText = action.newText;
-      break;
+      newState.posts.push(newPost);
+      newState.newPostText = "";
+      return newState;
+    }
+    case "UPDATE-NEW-POST-TEXT": {
+      let newState = { ...state };
+      newState.newPostText = action.newText;
+      return newState;
+    }
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
 export const addPostActionCreator = () => ({ type: "ADD-POST" });
