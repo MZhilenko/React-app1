@@ -27,9 +27,8 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD-POST": {
-      let newState = { ...state };
-      newState.posts = [...state.posts];
+    case "ADD_POST": {
+      let newState = { ...state, posts: [...state.posts] };
       let newPost = {
         id: newState.posts.length + 1,
         date: "27.02.2024",
@@ -41,7 +40,7 @@ const profileReducer = (state = initialState, action) => {
       newState.newPostText = "";
       return newState;
     }
-    case "UPDATE-NEW-POST-TEXT": {
+    case "UPDATE_NEW_POST_TEXT": {
       let newState = { ...state };
       newState.newPostText = action.newText;
       return newState;
@@ -51,9 +50,9 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = () => ({ type: "ADD-POST" });
+export const addPostActionCreator = () => ({ type: "ADD_POST" });
 export const updateNewPostTextActionCreator = (text) => ({
-  type: "UPDATE-NEW-POST-TEXT",
+  type: "UPDATE_NEW_POST_TEXT",
   newText: text,
 });
 

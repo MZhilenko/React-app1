@@ -27,6 +27,14 @@ const Sidebar = () => {
         >
           Messages
         </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? `${classes.activeLink} ${classes.link}` : classes.link
+          }
+          to="/users"
+        >
+          Users
+        </NavLink>
         <a className={classes.link}>News</a>
         <a className={classes.link}>Music</a>
         <div className={classes.line}></div>
