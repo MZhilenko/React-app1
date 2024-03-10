@@ -1,96 +1,8 @@
 let initialState = {
-  users: [
-    // {
-    //   id: 1,
-    //   fullName: "Eric Cartman",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/eric-cartman.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: false,
-    // },
-    // {
-    //   id: 2,
-    //   fullName: "Stan Marsh",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/stan-marsh.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: true,
-    // },
-    // {
-    //   id: 3,
-    //   fullName: "Kyle Broflovski",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/kyle-broflovski.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: true,
-    // },
-    // {
-    //   id: 4,
-    //   fullName: "Kenny McCormick",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/kenny-mccormick.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: false,
-    // },
-    // {
-    //   id: 5,
-    //   fullName: "Butters Stotch",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/butters-stotch.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: false,
-    // },
-    // {
-    //   id: 6,
-    //   fullName: "Eric Cartman",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/eric-cartman.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: true,
-    // },
-    // {
-    //   id: 7,
-    //   fullName: "Stan Marsh",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/stan-marsh.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: false,
-    // },
-    // {
-    //   id: 8,
-    //   fullName: "Kyle Broflovski",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/kyle-broflovski.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: true,
-    // },
-    // {
-    //   id: 9,
-    //   fullName: "Kenny McCormick",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/kenny-mccormick.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: false,
-    // },
-    // {
-    //   id: 10,
-    //   fullName: "Butters Stotch",
-    //   avatar:
-    //     "https://images.paramount.tech/path/mgid:file:gsp:entertainment-assets:/sps/shared/characters/kids/butters-stotch.png",
-    //   status: "Lorem ipsum dolor sit amet",
-    //   location: { city: "South Park", country: "USA" },
-    //   followed: false,
-    // },
-  ],
+  totalUsersCount: 0,
+  currentPage: 1,
+  pageSize: 5,
+  users: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -118,7 +30,16 @@ const usersReducer = (state = initialState, action) => {
       };
     }
     case "ADD_USERS": {
-      return { ...state, users: [...state.users, ...action.users] };
+      return {
+        ...state,
+        users: action.users,
+      };
+    }
+    case "SET_PAGE_NUMBER": {
+      return { ...state, currentPage: action.pageNumber };
+    }
+    case "SET_USERS_COUNT": {
+      return { ...state, totalUsersCount: action.usersCount };
     }
     default:
       return state;
@@ -128,5 +49,13 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({ type: "FOLLOW", userId });
 export const unfollowAC = (userId) => ({ type: "UNFOLLOW", userId });
 export const addUsersAC = (users) => ({ type: "ADD_USERS", users });
+export const setUsersCountAC = (usersCount) => ({
+  type: "SET_USERS_COUNT",
+  usersCount,
+});
+export const setPageNumberAC = (pageNumber) => ({
+  type: "SET_PAGE_NUMBER",
+  pageNumber,
+});
 
 export default usersReducer;
