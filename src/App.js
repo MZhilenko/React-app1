@@ -4,8 +4,8 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Dialogs from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Profile from "./components/Profile/Profile";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 const App = (props) => {
   return (
@@ -18,9 +18,9 @@ const App = (props) => {
             <div className="app-content">
               <Routes>
                 <Route
-                  path="profile"
+                  path="/profile/*"
                   element={
-                    <Profile
+                    <ProfileContainer
                     // posts={props.state.profilePage.posts}
                     // dispatch={props.dispatch}
                     // newPostText={props.state.profilePage.newPostText}
@@ -28,7 +28,7 @@ const App = (props) => {
                   }
                 ></Route>
                 <Route
-                  path="messages"
+                  path="/messages"
                   element={
                     <Dialogs
                     // dialogs={props.state.dialogsPage.dialogs}
@@ -38,7 +38,7 @@ const App = (props) => {
                     />
                   }
                 />
-                <Route path="users" element={<UsersContainer />} />
+                <Route path="/users" element={<UsersContainer />} />
               </Routes>
             </div>
           </div>

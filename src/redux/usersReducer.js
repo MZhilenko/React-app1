@@ -2,6 +2,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   pageSize: 5,
+  fetchingState: "success",
   users: [],
 };
 
@@ -29,7 +30,7 @@ const usersReducer = (state = initialState, action) => {
         }),
       };
     }
-    case "ADD_USERS": {
+    case "SET_USERS": {
       return {
         ...state,
         users: action.users,
@@ -41,21 +42,28 @@ const usersReducer = (state = initialState, action) => {
     case "SET_USERS_COUNT": {
       return { ...state, totalUsersCount: action.usersCount };
     }
+    case "SET_FETCHING_STATE": {
+      return { ...state, fetchingState: action.fetchingState };
+    }
     default:
       return state;
   }
 };
 
-export const followAC = (userId) => ({ type: "FOLLOW", userId });
-export const unfollowAC = (userId) => ({ type: "UNFOLLOW", userId });
-export const addUsersAC = (users) => ({ type: "ADD_USERS", users });
-export const setUsersCountAC = (usersCount) => ({
+export const follow = (userId) => ({ type: "FOLLOW", userId });
+export const unfollow = (userId) => ({ type: "UNFOLLOW", userId });
+export const setUsers = (users) => ({ type: "SET_USERS", users });
+export const setUsersCount = (usersCount) => ({
   type: "SET_USERS_COUNT",
   usersCount,
 });
-export const setPageNumberAC = (pageNumber) => ({
+export const setPageNumber = (pageNumber) => ({
   type: "SET_PAGE_NUMBER",
   pageNumber,
+});
+export const setFetchingState = (fetchingState) => ({
+  type: "SET_FETCHING_STATE",
+  fetchingState,
 });
 
 export default usersReducer;

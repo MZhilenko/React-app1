@@ -1,4 +1,6 @@
 let initialState = {
+  fetchingState: "loading",
+  profile: null,
   newPostText: "",
   posts: [
     {
@@ -27,6 +29,9 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_USER_PROFILE": {
+      return { ...state, profile: action.profile };
+    }
     case "ADD_POST": {
       let newState = { ...state, posts: [...state.posts] };
       let newPost = {
@@ -45,6 +50,9 @@ const profileReducer = (state = initialState, action) => {
       newState.newPostText = action.newText;
       return newState;
     }
+    case "SET_PROFILE_FETCHING_STATE": {
+      return { ...state, fetchingState: action.fetchingState };
+    }
     default:
       return state;
   }
@@ -54,6 +62,14 @@ export const addPostActionCreator = () => ({ type: "ADD_POST" });
 export const updateNewPostTextActionCreator = (text) => ({
   type: "UPDATE_NEW_POST_TEXT",
   newText: text,
+});
+export const setUserProfile = (profile) => ({
+  type: "SET_USER_PROFILE",
+  profile: profile,
+});
+export const setProfileFetchingState = (fetchingState) => ({
+  type: "SET_PROFILE_FETCHING_STATE",
+  fetchingState,
 });
 
 export default profileReducer;

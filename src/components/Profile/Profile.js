@@ -4,10 +4,11 @@ import ProfileCard from "./ProfileCard/ProfileCard";
 import AddPostContainer from "./AddPost/AddPostContainer";
 import PostsContainer from "./Posts/PostsContainer";
 
-const Profile = () => {
+const Profile = (props) => {
+  console.log(props.profile);
   return (
     <div className={classes.profile}>
-      <ProfileCard />
+      <ProfileCard profile={props.profile} />
       <AddPostContainer
       // dispatch={props.dispatch}
       // newPostText={props.newPostText}
