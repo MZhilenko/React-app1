@@ -8,11 +8,28 @@ import {
 } from "../../redux/profileReducer";
 import Preloader from "../Users/Loading/Preloader";
 import Error from "../Users/Error/Error";
+import { useParams } from "react-router-dom";
+
+const withRouter = (WrappedComponent) => (props) => {
+  const params = useParams();
+  // etc... other react-router-dom v6 hooks
+  return (
+    <WrappedComponent
+      {...props}
+      params={params}
+      // etc...
+    />
+  );
+};
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
+    let userId = this.props.params.userId;
+    if (!userId) {
+      userId = 2;
+    }
     axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+      .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
       .then((response) => {
         this.props.setProfileFetchingState("success");
         this.props.setUserProfile(response.data);
@@ -41,7 +58,9 @@ let mapStateToProps = (state) => ({
   fetchingState: state.profilePage.fetchingState,
 });
 
+const ProfileContainerWithRouter = withRouter(ProfileContainer);
+
 export default connect(mapStateToProps, {
   setUserProfile,
   setProfileFetchingState,
-})(ProfileContainer);
+})(ProfileContainerWithRouter);

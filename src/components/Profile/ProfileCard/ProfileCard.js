@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import classes from "./ProfileCard.module.css";
 
 const ProfileCard = (props) => {
-  let contacts = [];
-
   return (
     <div className={classes.profileCard}>
       <img

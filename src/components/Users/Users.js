@@ -4,6 +4,7 @@ import defaultUserPhoto from "../../assets/images/avatar.png";
 import Preloader from "./Loading/Preloader";
 import Error from "./Error/Error";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Users = (props) => {
   let pagesCount = Math.ceil(Number(props.totalUsersCount) / props.pageSize);
@@ -33,14 +34,48 @@ const Users = (props) => {
           </div>
           {user.followed ? (
             <button
-              onClick={() => props.unfollow(user.id)}
+              onClick={() => {
+                axios
+                  .delete(
+                    `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                    {
+                      withCredentials: true,
+                      headers: {
+                        "API-KEY": "893ec95b-6d18-4275-b66f-f4f67c257510",
+                      },
+                    }
+                  )
+                  .then((response) => {
+                    if (response.data.resultCode == 0) {
+                      props.unfollow(user.id);
+                    }
+                  });
+              }}
               className={classes.unfollow}
             >
+              {" "}
               UNFOLLOW
             </button>
           ) : (
             <button
-              onClick={() => props.follow(user.id)}
+              onClick={() => {
+                axios
+                  .post(
+                    `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                    {},
+                    {
+                      withCredentials: true,
+                      headers: {
+                        "API-KEY": "893ec95b-6d18-4275-b66f-f4f67c257510",
+                      },
+                    }
+                  )
+                  .then((response) => {
+                    if (response.data.resultCode == 0) {
+                      props.follow(user.id);
+                    }
+                  });
+              }}
               className={classes.follow}
             >
               FOLLOW

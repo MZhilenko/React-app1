@@ -5,7 +5,6 @@ import AddPostContainer from "./AddPost/AddPostContainer";
 import PostsContainer from "./Posts/PostsContainer";
 
 const Profile = (props) => {
-  console.log(props.profile);
   return (
     <div className={classes.profile}>
       <ProfileCard profile={props.profile} />

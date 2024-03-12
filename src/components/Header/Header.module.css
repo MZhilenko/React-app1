@@ -5,6 +5,8 @@
 
 .inner {
   height: 60px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .logo {
@@ -14,4 +16,19 @@
 .logo img {
   height: 100%;
   object-fit: contain;
+
+}
+
+.login,
+.login a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.login a:hover {
+  text-decoration: underline;
 }
