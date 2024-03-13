@@ -4,6 +4,7 @@ import axios from "axios";
 import Users from "./Users";
 import {
   follow,
+  getUsersThunkCreator,
   setFetchingState,
   setPageNumber,
   setUsers,
@@ -13,40 +14,14 @@ import {
 
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    this.props.setFetchingState("loading");
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        this.props.setFetchingState("success");
-        this.props.setUsers(response.data.items);
-        this.props.setUsersCount(Number(response.data.totalCount));
-      })
-      .catch((error) => {
-        this.props.setFetchingState("error");
-      });
+    this.props.getUsersThunkCreator(
+      this.props.currentPage,
+      this.props.pageSize
+    );
   }
   onPageChanged = (pageNum) => {
-    this.props.setFetchingState("loading");
     this.props.setPageNumber(pageNum);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((response) => {
-        this.props.setFetchingState("success");
-        this.props.setUsers(response.data.items);
-      })
-      .catch((error) => {
-        this.props.setFetchingState("error");
-      });
+    this.props.getUsersThunkCreator(pageNum, this.props.pageSize);
   };
 
   render() {
@@ -82,4 +57,5 @@ export default connect(mapStateToProps, {
   setPageNumber,
   setUsersCount,
   setFetchingState,
+  getUsersThunkCreator,
 })(UsersAPIComponent);

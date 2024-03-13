@@ -1,3 +1,5 @@
+import { usersAPI } from "../api";
+
 let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
@@ -65,5 +67,21 @@ export const setFetchingState = (fetchingState) => ({
   type: "SET_FETCHING_STATE",
   fetchingState,
 });
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setFetchingState("loading"));
+    usersAPI
+      .getUsers(currentPage, pageSize)
+      .then((response) => {
+        dispatch(setFetchingState("success"));
+        dispatch(setUsers(response.data.items));
+        dispatch(setUsersCount(Number(response.data.totalCount)));
+      })
+      .catch((error) => {
+        dispatch(setFetchingState("error"));
+      });
+  };
+};
 
 export default usersReducer;
