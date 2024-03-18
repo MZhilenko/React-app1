@@ -4,8 +4,6 @@ import defaultUserPhoto from "../../assets/images/avatar.png";
 import Preloader from "./Loading/Preloader";
 import Error from "./Error/Error";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
-import { usersAPI } from "../../api";
 
 const Users = (props) => {
   let pagesCount = Math.ceil(Number(props.totalUsersCount) / props.pageSize);
@@ -36,25 +34,16 @@ const Users = (props) => {
           {user.followed ? (
             <button
               onClick={() => {
-                usersAPI.unfollowUser(user.id).then((response) => {
-                  if (response.data.resultCode == 0) {
-                    props.unfollow(user.id);
-                  }
-                });
+                props.unfollow(user.id);
               }}
               className={classes.unfollow}
             >
-              {" "}
               UNFOLLOW
             </button>
           ) : (
             <button
               onClick={() => {
-                usersAPI.followUser(user.id).then((response) => {
-                  if (response.data.resultCode == 0) {
-                    props.follow(user.id);
-                  }
-                });
+                props.follow(user.id);
               }}
               className={classes.follow}
             >

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Users from "./Users";
 import {
   follow,
-  getUsersThunkCreator,
+  getUsers,
   setFetchingState,
   setPageNumber,
   setUsers,
@@ -13,14 +13,19 @@ import {
 
 class UsersAPIComponent extends React.Component {
   componentDidMount() {
-    this.props.getUsersThunkCreator(
-      this.props.currentPage,
-      this.props.pageSize
-    );
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
   onPageChanged = (pageNum) => {
     this.props.setPageNumber(pageNum);
-    this.props.getUsersThunkCreator(pageNum, this.props.pageSize);
+    this.props.getUsers(pageNum, this.props.pageSize);
+  };
+
+  onFollow = (userId) => {
+    this.props.follow(userId);
+  };
+
+  onUnfollow = (userId) => {
+    this.props.unfollow(userId);
   };
 
   render() {
@@ -31,8 +36,8 @@ class UsersAPIComponent extends React.Component {
         currentPage={this.props.currentPage}
         fetchingState={this.props.fetchingState}
         users={this.props.users}
-        unfollow={this.props.unfollow}
-        follow={this.props.follow}
+        unfollow={this.onUnfollow}
+        follow={this.onFollow}
         onPageChanged={this.onPageChanged}
       />
     );
@@ -56,5 +61,5 @@ export default connect(mapStateToProps, {
   setPageNumber,
   setUsersCount,
   setFetchingState,
-  getUsersThunkCreator,
+  getUsers,
 })(UsersAPIComponent);

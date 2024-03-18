@@ -1,3 +1,5 @@
+import { authAPI } from "../api";
+
 let initialState = {
   id: null,
   email: null,
@@ -20,5 +22,18 @@ export const setAuthUserData = (data) => ({
   type: "SET_AUTH_USER_DATA",
   data,
 });
+
+export const getAuthUserData = () => (dispatch) => {
+  authAPI
+    .me()
+    .then((response) => {
+      if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(response.data.data));
+      }
+    })
+    .catch((error) => {
+      // this.props.setFetchingState("error");
+    });
+};
 
 export default authReducer;

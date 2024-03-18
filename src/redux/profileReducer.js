@@ -1,3 +1,5 @@
+import { profileAPI } from "../api";
+
 let initialState = {
   fetchingState: "loading",
   profile: null,
@@ -67,6 +69,17 @@ export const setUserProfile = (profile) => ({
   type: "SET_USER_PROFILE",
   profile: profile,
 });
+export const getUserProfile = (userId) => (dispatch) => {
+  profileAPI
+    .getProfileUser(userId)
+    .then((response) => {
+      dispatch(setProfileFetchingState("success"));
+      dispatch(setUserProfile(response.data));
+    })
+    .catch((error) => {
+      dispatch(setProfileFetchingState("error"));
+    });
+};
 export const setProfileFetchingState = (fetchingState) => ({
   type: "SET_PROFILE_FETCHING_STATE",
   fetchingState,

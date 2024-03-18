@@ -1,15 +1,14 @@
 import React from "react";
-import axios from "axios";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import {
   setProfileFetchingState,
   setUserProfile,
+  getUserProfile,
 } from "../../redux/profileReducer";
 import Preloader from "../Users/Loading/Preloader";
 import Error from "../Users/Error/Error";
 import { useParams } from "react-router-dom";
-import { profileAPI } from "../../api";
 
 const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
@@ -27,17 +26,9 @@ class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.params.userId;
     if (!userId) {
-      userId = 2;
+      userId = 30924;
     }
-    profileAPI
-      .getProfileUser(userId)
-      .then((response) => {
-        this.props.setProfileFetchingState("success");
-        this.props.setUserProfile(response.data);
-      })
-      .catch((error) => {
-        this.props.setProfileFetchingState("error");
-      });
+    this.props.getUserProfile(userId);
   }
 
   render() {
@@ -63,5 +54,6 @@ const ProfileContainerWithRouter = withRouter(ProfileContainer);
 
 export default connect(mapStateToProps, {
   setUserProfile,
+  getUserProfile,
   setProfileFetchingState,
 })(ProfileContainerWithRouter);
