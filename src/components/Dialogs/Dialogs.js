@@ -1,22 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import classes from "./Dialogs.module.css";
-// import Contacts from "./Contacts/Contacts";
-import Messages from "./Messages/Messages";
-// import { Route, Routes } from "react-router-dom";
 import ContactsContainer from "./Contacts/ContactsContainer";
 import MessagesContainer from "./Messages/MessagesContainer";
+import { Navigate } from "react-router-dom";
 
 const Dialogs = (props) => {
   return (
     <div className={classes.dialogs}>
-      <ContactsContainer
-      // dialogs={props.dialogs}
-      />
-      <MessagesContainer
-      // messages={props.messages}
-      // dispatch={props.dispatch}
-      // newMessageText={props.newMessageText}
-      />
+      <ContactsContainer />
+      <MessagesContainer />
     </div>
   );
 };

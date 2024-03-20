@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Dialogs from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = (props) => {
   return (
@@ -21,18 +22,9 @@ const App = (props) => {
                   path="/profile/:userId?"
                   element={<ProfileContainer />}
                 ></Route>
-                <Route
-                  path="/messages"
-                  element={
-                    <Dialogs
-                    // dialogs={props.state.dialogsPage.dialogs}
-                    // dispatch={props.dispatch}
-                    // messages={props.state.dialogsPage.messages}
-                    // newMessageText={props.state.dialogsPage.newMessageText}
-                    />
-                  }
-                />
+                <Route path="/messages" element={<DialogsContainer />} />
                 <Route path="/users" element={<UsersContainer />} />
+                <Route path="/login" element={<Login />} />
               </Routes>
             </div>
           </div>

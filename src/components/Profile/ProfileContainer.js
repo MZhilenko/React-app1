@@ -9,6 +9,8 @@ import {
 import Preloader from "../Users/Loading/Preloader";
 import Error from "../Users/Error/Error";
 import { useParams } from "react-router-dom";
+import withAuthRedirect from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
@@ -30,7 +32,6 @@ class ProfileContainer extends React.Component {
     }
     this.props.getUserProfile(userId);
   }
-
   render() {
     switch (this.props.fetchingState) {
       case "success":
@@ -50,10 +51,12 @@ let mapStateToProps = (state) => ({
   fetchingState: state.profilePage.fetchingState,
 });
 
-const ProfileContainerWithRouter = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, {
-  setUserProfile,
-  getUserProfile,
-  setProfileFetchingState,
-})(ProfileContainerWithRouter);
+export default compose(
+  connect(mapStateToProps, {
+    setUserProfile,
+    getUserProfile,
+    setProfileFetchingState,
+  }),
+  withAuthRedirect,
+  withRouter
+)(ProfileContainer);
